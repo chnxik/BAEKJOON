@@ -1,22 +1,18 @@
 #include <iostream>
 
-// 10818번 최소, 최대
+// 2577번 숫자의 개수
 
 using std::cin;
 
 int main()
 {
-	std::cout.sync_with_stdio(false);
-	std::cin.tie(NULL);
-	int N, max = 0, cnt;
-	for (int i = 1; i < 10; ++i)
+	int a,b,c, res, nums[10] = { 0, };
+	cin >> a >> b >> c;
+	res = a * b * c;
+	while(res)
 	{
-		cin >> N;
-		if (max < N)
-		{
-			max = N;
-			cnt = i;
-		}
+		++nums[res % 10];
+		res /= 10;
 	}
-	std::cout << max << '\n' << cnt;
+	for (int i = 0; i < 10; ++i) std::cout << nums[i] << '\n';
 }
