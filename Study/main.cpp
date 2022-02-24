@@ -1,16 +1,17 @@
 #include <iostream>
 
-// 11022¹ø A+B - 8
+// 2838¹ø º° Âï±â - 1
+using std::cout;
 
 int main()
 {
-	int N,A,B;
+	int N;
 	std::cin.tie(NULL);
 	std::cout.sync_with_stdio(false);
 	std::cin >> N;
 	for (int i = 1; i <= N; ++i)
 	{
-		std::cin >> A >> B;
-		std::cout << "Case #" << i << ": " << A << " + " << B << " = " << A + B << '\n';
+		for (int j = 0; j < i; ++j) cout << '*';
+		cout << '\n';
 	}
 }
