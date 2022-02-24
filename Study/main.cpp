@@ -1,6 +1,6 @@
 #include <iostream>
 
-// 2838¹ø º° Âï±â - 1
+// 2439¹ø º° Âï±â - 2
 using std::cout;
 
 int main()
@@ -11,7 +11,8 @@ int main()
 	std::cin >> N;
 	for (int i = 1; i <= N; ++i)
 	{
-		for (int j = 0; j < i; ++j) cout << '*';
+		for (int j = 0; j < N - i; ++j) cout << ' ';
+		for (int k = 0; k < i; ++k) cout << '*';
 		cout << '\n';
 	}
 }
