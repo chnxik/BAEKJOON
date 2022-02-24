@@ -8,14 +8,15 @@ int main()
 {
 	std::cout.sync_with_stdio(false);
 	std::cin.tie(NULL);
-	int N, temp;
-	cin >> N >> temp;
-	int max = temp, min = temp;
-	for (int i = 1; i < N; ++i)
+	int N, max = 0, cnt;
+	for (int i = 1; i < 10; ++i)
 	{
-		cin >> temp;
-		if (max < temp) max = temp;
-		if (min > temp) min = temp;
+		cin >> N;
+		if (max < N)
+		{
+			max = N;
+			cnt = i;
+		}
 	}
-	std::cout << min << ' ' << max;
+	std::cout << max << '\n' << cnt;
 }
