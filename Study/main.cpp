@@ -1,14 +1,16 @@
 #include <iostream>
 
-// 10951번 A+B - 4
+// 1110번 더하기 사이클
 
 int main()
 {
-	int A, B;
-	while (1)
+	short N,cnt = 0;
+	std::cin >> N;
+	short temp = N;
+	do
 	{
-		std::cin >> A >> B;
-		if (std::cin.eof() == true) break;
-		std::cout << A + B << '\n';
-	}
+		N = (N % 10 * 10) + (N / 10 + N % 10) % 10;
+		++cnt;
+	} while (temp != N);
+	std::cout << cnt;
 }
