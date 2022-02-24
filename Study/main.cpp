@@ -1,10 +1,14 @@
 #include <iostream>
 
-// 2739¹ø
+// 10950¹ø A+B-3
 
 int main()
 {
-	int N;
+	int N,A,B;
 	std::cin >> N;
-	for (int i = 1; i <= 9; ++i) std::cout << N << " * " << i << " = " << N * i << std::endl;
+	for (int i = 0; i < N; ++i)
+	{
+		std::cin >> A >> B;
+		std::cout << A + B << std::endl;
+	}
 }
