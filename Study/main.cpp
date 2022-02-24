@@ -1,14 +1,14 @@
 #include <iostream>
 
-// 10952¹ø A+B - 5
+// 10951¹ø A+B - 4
 
 int main()
 {
 	int A, B;
-	while(1)
+	while (1)
 	{
 		std::cin >> A >> B;
-		if (A == 0 && B == 0) break;
+		if (std::cin.eof() == true) break;
 		std::cout << A + B << '\n';
 	}
 }
