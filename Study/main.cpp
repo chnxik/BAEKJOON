@@ -1,22 +1,14 @@
 #include <iostream>
 
-// 10871번 X보다 작은 수
+// 10952번 A+B - 5
 
 int main()
 {
-	int N, X;
-	std::cin >> N >> X;
-	int* nums = new int[N];
-	bool ins = false;
-	for (int i = 0; i < N; ++i) std::cin >> nums[i];
-	for (int i = 0; i < N; ++i)
+	int A, B;
+	while(1)
 	{
-		if (nums[i] < X)
-		{
-			if (ins) std::cout << " ";
-			std::cout << nums[i];
-			ins = true;
-		}
+		std::cin >> A >> B;
+		if (A == 0 && B == 0) break;
+		std::cout << A + B << '\n';
 	}
-	delete[] nums;
 }
