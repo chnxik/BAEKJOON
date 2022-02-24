@@ -1,11 +1,16 @@
 #include <iostream>
 
-// 8393번 합
+// 15552번 빠른 A+B
 
 int main()
 {
-	int N, res = 0;
+	int N,A,B;
+	std::cin.tie(NULL);
+	std::cout.sync_with_stdio(false);
 	std::cin >> N;
-	for (int i = 1; i <= N; ++i) res += i;
-	std::cout << res;
+	for (int i = 0; i < N; ++i)
+	{
+		std::cin >> A >> B;
+		std::cout << A + B << '\n';
+	}
 }
