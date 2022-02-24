@@ -1,6 +1,6 @@
 #include <iostream>
 
-// 11021¹ø A+B - 7
+// 11022¹ø A+B - 8
 
 int main()
 {
@@ -11,6 +11,6 @@ int main()
 	for (int i = 1; i <= N; ++i)
 	{
 		std::cin >> A >> B;
-		std::cout << "Case #"<< i <<": " << A+B << '\n';
+		std::cout << "Case #" << i << ": " << A << " + " << B << " = " << A + B << '\n';
 	}
 }
