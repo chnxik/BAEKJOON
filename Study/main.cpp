@@ -1,6 +1,6 @@
 #include <iostream>
 
-// 2741¹ø  N Âï±â
+// 2742¹ø  ±âÂï N
 
 int main()
 {
@@ -8,5 +8,5 @@ int main()
 	std::cin.tie(NULL);
 	std::cout.sync_with_stdio(false);
 	std::cin >> N;
-	for (int i = 1; i <= N; ++i) std::cout << i << '\n';
+	for (int i = N; i > 0; --i) std::cout << i << '\n';
 }
