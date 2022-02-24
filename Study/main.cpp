@@ -1,16 +1,12 @@
 #include <iostream>
 
-// 15552번 빠른 A+B
+// 2741번  N 찍기
 
 int main()
 {
-	int N,A,B;
+	int N;
 	std::cin.tie(NULL);
 	std::cout.sync_with_stdio(false);
 	std::cin >> N;
-	for (int i = 0; i < N; ++i)
-	{
-		std::cin >> A >> B;
-		std::cout << A + B << '\n';
-	}
+	for (int i = 1; i <= N; ++i) std::cout << i << '\n';
 }
