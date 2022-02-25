@@ -1,18 +1,22 @@
 #include <iostream>
 
-// 2577번 숫자의 개수
-
-using std::cin;
+// 3052번 나머지
 
 int main()
 {
-	int a,b,c, res, nums[10] = { 0, };
-	cin >> a >> b >> c;
-	res = a * b * c;
-	while(res)
+	short cnt = 10 , remain[10] = { 0, };
+	for (int i = 0; i < 10; ++i)
 	{
-		++nums[res % 10];
-		res /= 10;
+		std::cin >> remain[i];
+		remain[i] %= 42;
+		for (int j = 0; j < i; ++j)
+		{
+			if (remain[i] == remain[j])
+			{
+				--cnt;
+				break;
+			}
+		}
 	}
-	for (int i = 0; i < 10; ++i) std::cout << nums[i] << '\n';
+	std::cout << cnt;
 }
