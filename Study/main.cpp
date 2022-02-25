@@ -1,34 +1,32 @@
 #include <iostream>
 
-// 8958¹ø OXÄûÁî
+// 4344¹ø Æò±ÕÀº ³Ñ°ÚÁö
 
 using std::cin;
 
 int main()
 {
-	std::cin.tie(NULL);
-	std::cout.sync_with_stdio(false);
 
-	int N,cnt,score;
-	char OX[80];
-	char* cp;
-	cin >> N;
-	for (int i = 0; i < N; ++i)
+	std::cout.precision(5);
+
+	int C, N, score[1000];
+	double avg,N2;
+	cin >> C;
+	for (int i = 0; i < C; ++i)
 	{
-		cin >> OX;
-		cnt = 0;
-		score = 0;
-		cp = OX;
-		while (*cp)
+		cin >> N;
+		avg = 0;
+		N2 = 0;
+		for (int j = 0; j < N; ++j)
 		{
-			if (*cp == 'O')
-			{
-				++cnt;
-				score += cnt;
-			}
-			else if (*cp == 'X') cnt = 0;
-			++cp;
+			cin >> score[j];
+			avg += score[j];
 		}
-		std::cout << score << '\n';
+		avg = avg/N;
+		for (int j = 0; j < N; ++j)
+		{
+			if (score[j] > avg) ++N2;
+		}
+		printf("%.3lf%c\n", N2 / N * 100,'%');
 	}
 }
