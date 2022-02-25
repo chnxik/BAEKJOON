@@ -1,22 +1,24 @@
 #include <iostream>
 
-// 3052번 나머지
+// 1546번 평균
+
+using std::cin;
 
 int main()
 {
-	short cnt = 10 , remain[10] = { 0, };
-	for (int i = 0; i < 10; ++i)
+	std::cin.tie(NULL);
+
+	int N, score[1000] = { 0, }, M = 0;
+	double avg = 0;
+	cin >> N;
+	for (int i = 0; i < N; ++i)
 	{
-		std::cin >> remain[i];
-		remain[i] %= 42;
-		for (int j = 0; j < i; ++j)
-		{
-			if (remain[i] == remain[j])
-			{
-				--cnt;
-				break;
-			}
-		}
+		cin >> score[i];
+		if (M < score[i]) M = score[i];
 	}
-	std::cout << cnt;
+	for (int i = 0; i < N; ++i)
+	{
+		avg += (score[i] / (double)M) * 100;
+	}
+	std::cout << avg / N;
 }
