@@ -1,32 +1,15 @@
 #include <iostream>
+#include <vector>
 
-// 4344번 평균은 넘겠지
+// 15596번 정수 N개의 합
 
-using std::cin;
-
-int main()
+long long sum(std::vector<int>& a)
 {
-
-	std::cout.precision(5);
-
-	int C, N, score[1000];
-	double avg,N2;
-	cin >> C;
-	for (int i = 0; i < C; ++i)
+	long long ans = 0;
+	std::vector<int>::iterator aiter = a.begin();
+	while (aiter != a.end())
 	{
-		cin >> N;
-		avg = 0;
-		N2 = 0;
-		for (int j = 0; j < N; ++j)
-		{
-			cin >> score[j];
-			avg += score[j];
-		}
-		avg = avg/N;
-		for (int j = 0; j < N; ++j)
-		{
-			if (score[j] > avg) ++N2;
-		}
-		printf("%.3lf%c\n", N2 / N * 100,'%');
+		ans += *aiter++;
 	}
+	return ans;
 }
