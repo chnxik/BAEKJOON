@@ -1,15 +1,26 @@
 #include <iostream>
-#include <vector>
 
-// 15596번 정수 N개의 합
+// 4673번 셀프 넘버
 
-long long sum(std::vector<int>& a)
+int d(int n)
 {
-	long long ans = 0;
-	std::vector<int>::iterator aiter = a.begin();
-	while (aiter != a.end())
+	int res = n;
+	while (n)
 	{
-		ans += *aiter++;
+		res += n % 10;
+		n /= 10;
 	}
-	return ans;
+	return res;
+}
+
+int arr[10001] = { 0, };
+
+int main()
+{
+	
+	for (int i = 1; i < 10001; ++i)
+	{
+		if (!arr[d(i)]) arr[d(i)] = 1;
+		if (!arr[i]) std::cout << i << '\n';
+	}
 }
