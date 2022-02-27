@@ -1,25 +1,41 @@
 #include <iostream>
 
-// 2941번 크로아티아 알파벳
+// 1316번 그룹 단어 체커
+using std::cin;
+
+bool check_w(char* word)
+{
+	char* cp = word;
+	bool check = false;
+	do
+	{
+		if (check && *word == *cp) return false;
+		else if (*word != *cp) check = true;
+		++cp;
+	} while (*cp);
+	return true;
+}
 
 int main()
 {
-	char str[101];
-	std::cin >> str;
-	int cnt = 1;
-	for (int i = 1; 0 != str[i]; ++i)
+	int N;
+	char word[101];
+	char* wp = word;
+	cin >> N;
+	int cnt = N;
+	while (N--)
 	{
-
-		if (str[i] == '-' || str[i] == '=')
+		cin >> word;
+		wp = word;
+		while (*wp)
 		{
-			--cnt;
-			if (1<i && (str[i - 1] == 'z' && str[i - 2] == 'd')) --cnt;
+			if (!check_w(wp))
+			{
+				--cnt;
+				break;
+			}
+			++wp;
 		}
-		else if (0<i && str[i] == 'j')
-		{
-			if (str[i - 1] == 'l' || str[i - 1] == 'n') --cnt;
-		}
-		++cnt;
 	}
 	std::cout << cnt;
 }
