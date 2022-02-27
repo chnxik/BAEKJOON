@@ -2,9 +2,15 @@
 
 // 2908¹ø »ó¼ö
 
-void reverse(int &n)
+void reverse(int& n)
 {
-	n = n / 100 + (n % 100) / 10 * 10 + (n % 10) * 100;
+	int tmp = 0;
+	do
+	{
+		tmp = tmp * 10 + n % 10;
+		n /= 10;
+	} while (n);
+	n = tmp;
 }
 
 int main()
