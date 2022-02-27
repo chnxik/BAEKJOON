@@ -1,28 +1,10 @@
 #include <iostream>
 
-// 1065번 한수
-
-bool hansu(int n)
-{
-	short _n = n / 10;
-	short temp = n % 10 - _n % 10;
-	while (_n)
-	{
-		if (temp != n % 10 - _n % 10) return false;
-		temp = n % 10 - _n % 10;
-		n = _n;
-		_n = n / 10;
-	}
-	return true;
-}
+// 11654번 아스키코드
 
 int main()
 {
-	int N, cnt = 0;
-	std::cin >> N;
-	for (int i = 1; i <= N; ++i)
-	{
-		if (hansu(i)) ++cnt;
-	}
-	std::cout << cnt;
+	char c;
+	std::cin >> c;
+	std::cout << (short)c;
 }
