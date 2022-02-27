@@ -1,18 +1,24 @@
 #include <iostream>
+#include <cstring>
 
-// 11720번 숫자의 합
-
-using std::cin;
+// 10809번 알파벳 찾기
 
 int main()
 {
-	short N, res = 0;
-	char n;
-	cin >> N;
-	while (N--)
+	char S[101];
+	std::cin >> S;
+	int alphabet[26], tmp;
+	memset(alphabet, -1, sizeof(int) * 26);
+	
+	for (int i = 0; S[i] != 0; ++i)
 	{
-		cin >> n;
-		res += (short)n - 48;
+		tmp = (int)S[i] - 97;
+		if (-1 == alphabet[tmp]) alphabet[tmp] = i;
 	}
-	std::cout << res;
+	
+	for (int i = 0; i < 26; ++i)
+	{
+		if (i) std::cout << " ";
+		std::cout << alphabet[i];
+	}
 }
