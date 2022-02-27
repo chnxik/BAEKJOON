@@ -1,25 +1,41 @@
 #include <iostream>
 
-// 2675번 문자열 반복
+// 1157번 단어 공부
 
-using std::cin;
-using std::cout;
+int use_ch(char* ch)
+{
+	return 'Z' < *ch ? (int)*ch - 97 : (int)*ch - 65;
+}
+
+char max(int alp[])
+{
+	int max = 0, maxi = 0;
+	bool dup = false;
+	for (int i = 0; i < 26; ++i)
+	{
+		if (max < alp[i])
+		{
+			max = alp[i];
+			maxi = i;
+			dup = false;
+		}
+		else if (max == alp[i])
+		{
+			dup = true;
+		}
+	}
+	return dup ? '?' : maxi + 65;
+}
 
 int main()
 {
-	int T, R;
-	char S[21];
-	char* ps;
-	cin >> T;
-	while (T--)
+	char ch[1000001];
+	int alphabet[26] = { 0, };
+	std::cin >> ch;
+	char* pc = ch;
+	while (*pc)
 	{
-		cin >> R >> S;
-		ps = S;
-		while (*ps)
-		{
-			for (int i = 0; i < R; ++i) cout << *ps;
-			++ps;
-		}
-		cout << '\n';
+		++(alphabet[use_ch(pc++)]);
 	}
+	std::cout << max(alphabet);
 }
