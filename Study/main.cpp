@@ -1,10 +1,20 @@
 #include <iostream>
 
-// 1712번 손익분기점
+// 2292번 벌집
+
+int beezip(int n)
+{
+	int x=1,i=0;
+	do
+	{
+		x += i++ * 6;
+	} while (n > x);
+	return i;
+}
 
 int main()
 {
-	int A, B, C;
-	std::cin >> A >> B >> C;
-	std::cout << (B < C ? (A / (C - B)) + 1 : -1);
+	int n;
+	std::cin >> n;
+	std::cout << beezip(n);
 }
