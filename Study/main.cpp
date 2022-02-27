@@ -1,20 +1,14 @@
 #include <iostream>
 
-// 2292번 벌집
-
-int beezip(int n)
-{
-	int x=1,i=0;
-	do
-	{
-		x += i++ * 6;
-	} while (n > x);
-	return i;
-}
+// 1193번 분수찾기
 
 int main()
 {
-	int n;
-	std::cin >> n;
-	std::cout << beezip(n);
+	int x, i = 1;
+	std::cin >> x;
+	while (x > 0) x -= i++;
+	int a = i + x - 1;
+	int b = 1 - x;
+	if (0 == i % 2) std::cout << b << '/' << a;
+	else if (1 == i % 2) std::cout << a << '/' << b;
 }
