@@ -1,41 +1,24 @@
 #include <iostream>
+#include <string>
 
-// 1157번 단어 공부
-
-int use_ch(char* ch)
-{
-	return 'Z' < *ch ? (int)*ch - 97 : (int)*ch - 65;
-}
-
-char max(int alp[])
-{
-	int max = 0, maxi = 0;
-	bool dup = false;
-	for (int i = 0; i < 26; ++i)
-	{
-		if (max < alp[i])
-		{
-			max = alp[i];
-			maxi = i;
-			dup = false;
-		}
-		else if (max == alp[i])
-		{
-			dup = true;
-		}
-	}
-	return dup ? '?' : maxi + 65;
-}
+// 1152번 단어의 개수
+std::string str;
 
 int main()
 {
-	char ch[1000001];
-	int alphabet[26] = { 0, };
-	std::cin >> ch;
-	char* pc = ch;
-	while (*pc)
+	bool check = true;
+	int cnt = 0;
+	std::getline(std::cin, str);
+	std::string::iterator _iter = str.begin();
+	while (_iter != str.end())
 	{
-		++(alphabet[use_ch(pc++)]);
+		if (check && *_iter != ' ')
+		{
+			check = false;
+			++cnt;
+		}
+		if (!check && *_iter == ' ') check = true;
+		++_iter;
 	}
-	std::cout << max(alphabet);
+	std::cout << cnt;
 }
