@@ -1,26 +1,28 @@
 #include <iostream>
 
-// 4673번 셀프 넘버
+// 1065번 한수
 
-int d(int n)
+bool hansu(int n)
 {
-	int res = n;
-	while (n)
+	short _n = n / 10;
+	short temp = n % 10 - _n % 10;
+	while (_n)
 	{
-		res += n % 10;
-		n /= 10;
+		if (temp != n % 10 - _n % 10) return false;
+		temp = n % 10 - _n % 10;
+		n = _n;
+		_n = n / 10;
 	}
-	return res;
+	return true;
 }
-
-int arr[10001] = { 0, };
 
 int main()
 {
-	
-	for (int i = 1; i < 10001; ++i)
+	int N, cnt = 0;
+	std::cin >> N;
+	for (int i = 1; i <= N; ++i)
 	{
-		if (!arr[d(i)]) arr[d(i)] = 1;
-		if (!arr[i]) std::cout << i << '\n';
+		if (hansu(i)) ++cnt;
 	}
+	std::cout << cnt;
 }
