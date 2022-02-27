@@ -1,10 +1,18 @@
 #include <iostream>
 
-// 11654번 아스키코드
+// 11720번 숫자의 합
+
+using std::cin;
 
 int main()
 {
-	char c;
-	std::cin >> c;
-	std::cout << (short)c;
+	short N, res = 0;
+	char n;
+	cin >> N;
+	while (N--)
+	{
+		cin >> n;
+		res += (short)n - 48;
+	}
+	std::cout << res;
 }
