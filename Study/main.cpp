@@ -1,17 +1,22 @@
 #include <iostream>
+// 2775번 부녀회장이 될테야
 
-// 10250번 ACM 호텔
-using std::cin;
+using namespace std;
+
+int trinum(int k, int n)
+{
+	if (1 == k) return n * (n + 1) / 2;
+	if (1 == n) return 1;
+	return trinum(k, n - 1) + trinum(k - 1, n);
+}
 
 int main()
 {
-	int T,H,W,N,f,r;
+	int T, k, n;
 	cin >> T;
 	while (T--)
 	{
-		cin >> H >> W >> N;
-		f = N % H;
-		r = N / H;
-		std::cout << ((f ? f : H)*100) + (f ? r + 1 : r) << '\n';
+		cin >> k >> n;
+		cout << trinum(k, n) << '\n';
 	}
 }
