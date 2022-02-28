@@ -1,52 +1,29 @@
 #include <iostream>
-#include <string.h>
 
-// 10757번 큰 수 A+B
+// 1978번 소수 찾기
+
+using std::cin;
 
 int main()
 {
-	std::cout.sync_with_stdio(false);
-	char* A = new char[10001], * B = new char[10001], * res = new char[10002];
-	std::cin >> A >> B;
-	char* pa = &A[(strlen(A)) - 1], * pb = &B[(strlen(B)) - 1], * pc = res;
-	int a, b, r, u = 0;
-	bool ba = true, bb = true;
-	while (true)
-	{
-		a = ba ? *pa - 48 : 0;
-		b = bb ? *pb - 48 : 0;
-		if (ba && pa == A)
-		{
-			a = *pa - 48;
-			ba = false;
-		}
-		else if (ba) --pa;
-		if (bb && pb == B)
-		{
-			b = *pb - 48;
-			bb = false;
-		}
-		else if (bb) --pb;
-		r = a + b + u;
-		u = r / 10;
-		r %= 10;
-		*pc++ = r + 48;
-		if (!ba && !bb)
-		{
-			if(u) *pc++ = u + 48;
-			*pc-- = 0;
-			break;
-		}
-	}
-	while (true)
-	{
-		std::cout << *pc - 48;
-		if (--pc == res)
-		{
-			std::cout << *pc - 48;
-			break;
-		}
-	}
+	int N, num, cnt = 0;
+	bool dec;
+	cin >> N;
 
-	delete[] A, B, res;
+	while (N--)
+	{
+		cin >> num;
+		dec = true;
+		for (int i = 2; i <= 32; ++i)
+		{
+			if (num == i) break;
+			if (0 == num % i || 1 == num)
+			{
+				dec = false;
+				break;
+			}
+		}
+		if (dec) ++cnt;
+	}
+	std::cout << cnt;
 }
