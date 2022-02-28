@@ -1,12 +1,17 @@
 #include <iostream>
 
-// 2869번 달팽이는 올라가고 싶다
+// 10250번 ACM 호텔
+using std::cin;
 
 int main()
 {
-	int A, B, V, a, b;
-	std::cin >> A >> B >> V;
-	a = V - A;
-	b = A - B;
-	std::cout << ((a % b) == 0 ? a / b + 1 : a / b + 2);
+	int T,H,W,N,f,r;
+	cin >> T;
+	while (T--)
+	{
+		cin >> H >> W >> N;
+		f = N % H;
+		r = N / H;
+		std::cout << ((f ? f : H)*100) + (f ? r + 1 : r) << '\n';
+	}
 }
