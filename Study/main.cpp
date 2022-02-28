@@ -1,22 +1,11 @@
 #include <iostream>
-// 2775번 부녀회장이 될테야
 
-using namespace std;
-
-int trinum(int k, int n)
-{
-	if (1 == k) return n * (n + 1) / 2;
-	if (1 == n) return 1;
-	return trinum(k, n - 1) + trinum(k - 1, n);
-}
+// 2839번 설탕 배달
 
 int main()
 {
-	int T, k, n;
-	cin >> T;
-	while (T--)
-	{
-		cin >> k >> n;
-		cout << trinum(k, n) << '\n';
-	}
+	int N;
+	std::cin >> N;
+	if (N == 4 || N == 7) std::cout << -1;
+	else std::cout << N/5 + ((N%5) ? (N % 5) % 2 ? 1 : 2 : 0);
 }
