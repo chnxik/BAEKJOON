@@ -1,32 +1,19 @@
 #include <iostream>
-#include <cmath>
 
-// 2581번 소수
+// 11653번 소인수분해
 
 int main()
 {
-	int M, N, root, sum = 0, min = 0;
-	bool dec;
-	std::cin >> M >> N;
-	root = (int)sqrt(N);
-	for (int i = M; i <= N; ++i)
+	int N, div = 2;
+	std::cin >> N;
+	if (1 == N) return 0;
+	while (1 != N)
 	{
-		dec = i == 1 ? false : true;
-		for (int j = 2; j <= root; ++j)
-		{
-			if (i == j || i == 1) break;
-			if (i % j == 0)
-			{
-				dec = false;
-				break;
-			}
+		if (!(N % div)) N /= div;
+		else {
+			++div;
+			continue;
 		}
-		if (dec)
-		{
-			if (!min) min = i;
-			sum += i;
-		}
+		std::cout << div << '\n';
 	}
-	if (sum) std::cout << sum << '\n' << min;
-	else std::cout << -1;
 }
