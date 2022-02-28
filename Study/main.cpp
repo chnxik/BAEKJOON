@@ -1,29 +1,32 @@
 #include <iostream>
+#include <cmath>
 
-// 1978번 소수 찾기
-
-using std::cin;
+// 2581번 소수
 
 int main()
 {
-	int N, num, cnt = 0;
+	int M, N, root, sum = 0, min = 0;
 	bool dec;
-	cin >> N;
-
-	while (N--)
+	std::cin >> M >> N;
+	root = (int)sqrt(N);
+	for (int i = M; i <= N; ++i)
 	{
-		cin >> num;
-		dec = true;
-		for (int i = 2; i <= 32; ++i)
+		dec = i == 1 ? false : true;
+		for (int j = 2; j <= root; ++j)
 		{
-			if (num == i) break;
-			if (0 == num % i || 1 == num)
+			if (i == j || i == 1) break;
+			if (i % j == 0)
 			{
 				dec = false;
 				break;
 			}
 		}
-		if (dec) ++cnt;
+		if (dec)
+		{
+			if (!min) min = i;
+			sum += i;
+		}
 	}
-	std::cout << cnt;
+	if (sum) std::cout << sum << '\n' << min;
+	else std::cout << -1;
 }
