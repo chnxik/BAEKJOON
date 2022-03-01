@@ -1,19 +1,25 @@
 #include <iostream>
 
-// 11653번 소인수분해
+// 1929번 소수 구하기
+
+int decArr[1000001] = { 0, };
 
 int main()
 {
-	int N, div = 2;
-	std::cin >> N;
-	if (1 == N) return 0;
-	while (1 != N)
+	std::cout.sync_with_stdio(false);
+	for (int i = 2; i < 1000001; ++i) decArr[i] = i;
+	for (int i = 2; i <= 1000; ++i)
 	{
-		if (!(N % div)) N /= div;
-		else {
-			++div;
-			continue;
+		if (decArr[i])
+		{
+			for (int j = i + 1; j < 1000001; ++j)
+			{
+				if (decArr[j] && decArr[j] % i == 0) decArr[j] = 0;
+			}
 		}
-		std::cout << div << '\n';
 	}
+	int M, N;
+	std::cin >> M >> N;
+	for (int i = M; i <= N; i++) if (decArr[i]) std::cout << decArr[i] << '\n';
+
 }
