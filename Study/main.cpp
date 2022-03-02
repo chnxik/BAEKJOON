@@ -1,21 +1,21 @@
 #include <iostream>
-#define SIZE 246913
+#define SIZE 10001
 
-// 4948번 베르트랑 공준
+// 9020번 골드바흐의 추측
 
-int decArr[SIZE] = {0,0};
+int decArr[SIZE] = {0,0,2,};
 
 void SetArr(int Arr[], int size)
 {
-	int i = 2;
-	while (i < size) Arr[i++] = i;
+	int i = 3;
+	for (; i < size; i += 2) Arr[i] = i;
 }
 
 void SetDec(int Arr[], int size)
 {
 	for (int i = 2; i * i < size; ++i)
 		if (Arr[i])
-			for (int j = 2; i*j <= size; ++j)
+			for (int j = 2; i*j < size; ++j)
 				Arr[i*j] = 0;
 }
 
@@ -23,14 +23,16 @@ int main()
 {
 	SetArr(decArr, SIZE);
 	SetDec(decArr, SIZE);
-	int n,cnt,dn;
-	while (true)
+	int T, n, hn;
+	std::cin >> T;
+	while (T--)
 	{
 		std::cin >> n;
-		if (!n) break;
-		cnt = 0;
-		dn = n * 2;
-		while (++n <= dn) if (decArr[n]) ++cnt;
-		std::cout << cnt << '\n';
+		hn = n / 2;
+		while (decArr[hn] + decArr[n - hn] != n)
+		{
+			while(!decArr[--hn]);
+		}
+		std::cout << hn << ' ' << n - hn << '\n';
 	}
 }
