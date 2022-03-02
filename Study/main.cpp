@@ -1,11 +1,20 @@
 #include <iostream>
 
-// 3009번 네 번째 점
+// 4153번 직각삼각형
+void swap(int& a, int& b)
+{
+	int t = a; a = b; b = t;
+}
 
 int main()
 {
-	int x[3], y[3];
-	for (int i = 0; i < 3; ++i) std::cin >> x[i] >> y[i];
-	std::cout << (x[0] == x[1] ? x[2] : x[0] == x[2] ? x[1] : x[0]) << ' ';
-	std::cout << (y[0] == y[1] ? y[2] : y[0] == y[2] ? y[1] : y[0]);
+	int a, b, c;
+	while (true)
+	{
+		std::cin >> a >> b >> c;
+		if (!a && !b && !c) break;
+		if (c < a) swap(c, a);
+		if (c < b) swap(c, b);
+		std::cout << (a * a + b * b == c * c ? "right" : "wrong") << '\n';
+	}
 }
