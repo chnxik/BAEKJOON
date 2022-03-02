@@ -1,25 +1,36 @@
 #include <iostream>
+#define SIZE 246913
 
-// 1929번 소수 구하기
+// 4948번 베르트랑 공준
 
-int decArr[1000001] = { 0, };
+int decArr[SIZE] = {0,0};
+
+void SetArr(int Arr[], int size)
+{
+	int i = 2;
+	while (i < size) Arr[i++] = i;
+}
+
+void SetDec(int Arr[], int size)
+{
+	for (int i = 2; i * i < size; ++i)
+		if (Arr[i])
+			for (int j = 2; i*j <= size; ++j)
+				Arr[i*j] = 0;
+}
 
 int main()
 {
-	std::cout.sync_with_stdio(false);
-	for (int i = 2; i < 1000001; ++i) decArr[i] = i;
-	for (int i = 2; i <= 1000; ++i)
+	SetArr(decArr, SIZE);
+	SetDec(decArr, SIZE);
+	int n,cnt,dn;
+	while (true)
 	{
-		if (decArr[i])
-		{
-			for (int j = i + 1; j < 1000001; ++j)
-			{
-				if (decArr[j] && decArr[j] % i == 0) decArr[j] = 0;
-			}
-		}
+		std::cin >> n;
+		if (!n) break;
+		cnt = 0;
+		dn = n * 2;
+		while (++n <= dn) if (decArr[n]) ++cnt;
+		std::cout << cnt << '\n';
 	}
-	int M, N;
-	std::cin >> M >> N;
-	for (int i = M; i <= N; i++) if (decArr[i]) std::cout << decArr[i] << '\n';
-
 }
