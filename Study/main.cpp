@@ -1,12 +1,11 @@
 #include <iostream>
 
-// 1085번 직사각형에서 탈출
+// 3009번 네 번째 점
 
 int main()
 {
-	int x, y, w, h;
-	std::cin >> x >> y >> w >> h;
-	x = x > w / 2 ? w - x : x;
-	y = y > h / 2 ? h - y : y;
-	std::cout << (x > y ? y : x);
+	int x[3], y[3];
+	for (int i = 0; i < 3; ++i) std::cin >> x[i] >> y[i];
+	std::cout << (x[0] == x[1] ? x[2] : x[0] == x[2] ? x[1] : x[0]) << ' ';
+	std::cout << (y[0] == y[1] ? y[2] : y[0] == y[2] ? y[1] : y[0]);
 }
