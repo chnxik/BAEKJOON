@@ -1,20 +1,15 @@
+#define _USE_MATH_DEFINES
 #include <iostream>
+#include <cmath>
 
-// 4153번 직각삼각형
-void swap(int& a, int& b)
-{
-	int t = a; a = b; b = t;
-}
+// 3053번 택시 기하학
 
 int main()
 {
-	int a, b, c;
-	while (true)
-	{
-		std::cin >> a >> b >> c;
-		if (!a && !b && !c) break;
-		if (c < a) swap(c, a);
-		if (c < b) swap(c, b);
-		std::cout << (a * a + b * b == c * c ? "right" : "wrong") << '\n';
-	}
+	double R;
+	std::cin >> R;
+	std::cout << std::fixed;
+	std::cout.precision(6);
+	std::cout << R * R * M_PI << '\n' << R * R * 2;
+
 }
