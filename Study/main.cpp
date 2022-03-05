@@ -1,39 +1,29 @@
 #include <iostream>
 
-// 11729번 하노이 탑 이동 순서
+// 2798번 블랙잭
 
-void hanoi(int n, int from, int to, int other);
-void hanoicnt(int n, int from, int to, int ohter, int* cnt);
-void hanoiprint(int n, int from, int to, int otehr);
+int blackjack(int i, int j, int k, int* arr)
+{
+	return arr[i] + arr[j] + arr[k];
+}
 
 int main()
 {
-	int n;
-	std::cin >> n;
-	hanoi(n, 1, 3, 2);
-}
+	int N, M, res = 0;
+	std::cin >> N >> M;
+	int* card = new int[N];
+	for (int i = 0; i < N; ++i) std::cin >> card[i];
+	for (int i = 0; i < N; ++i)
+	{
+		for (int j = i + 1; j < N; ++j)
+		{
+			for (int k = j + 1; k < N; ++k)
+			{
+				if (blackjack(i, j, k, card) <= M && res < blackjack(i, j, k, card)) res = blackjack(i, j, k, card);
+			}
+		}
+	}
+	std::cout << res;
 
-void hanoi(int n, int from, int to, int other)
-{
-	int cnt = 0;		// 이동 횟수 변수
-	int* pcnt = &cnt;	// 이동 횟수 변수 포인터
-	hanoicnt(n, from, to, other, pcnt);
-	std::cout << cnt << '\n';
-	hanoiprint(n, from, to, other);
-
-
-}
-void hanoicnt(int n, int from, int to, int other, int* cnt)
-{
-	if (!n) return;
-	++*cnt;
-	hanoicnt(n - 1, from, to, other, cnt);
-	hanoicnt(n - 1, other, to, from, cnt);
-}
-void hanoiprint(int n, int from, int to, int other)
-{
-	if (!n) return;
-	hanoiprint(n - 1, from, other, to);
-	std::cout << from << ' ' << to << '\n';
-	hanoiprint(n - 1, other, to, from);
+	delete[] card;
 }
