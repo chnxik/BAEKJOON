@@ -1,40 +1,48 @@
 #include <iostream>
 
-// 7568번 덩치
+// 1018번 체스판 다시 칠하기
 
-class people
+int check(int x, int y, char** arr)
 {
-public:
-	int h;
-	int w;
-	int rank;
-
-public:
-	people()
-		: h(0)
-		, w(0)
-		, rank(1)
+	int endx = x + 8, endy = y + 8, case1 = 0, case2 = 0;
+	for (int i = y; i < endy; ++i)
 	{
-		std::cin >> h >> w;
+		for (int j = x; j < endx; ++j)
+		{
+			if (i % 2)
+			{
+				if (j % 2) arr[i][j] == 'B' ? ++case1 : ++case2;
+				else arr[i][j] == 'B' ? ++case2 : ++case1;
+			}
+			else
+			{
+				if (j % 2) arr[i][j] == 'B' ? ++case2 : ++case1;
+				else arr[i][j] == 'B' ? ++case1 : ++case2;
+			}
+		}
 	}
-};
+	return case1 > case2 ? case2 : case1;
+}
 
 int main()
 {
-	int N;
-	std::cin >> N;
-	people* p = new people[N];
-
+	int N, M, repaint = 32;
+	std::cin >> N >> M;
+	char** Chess = new char* [N];
 	for (int i = 0; i < N; ++i)
 	{
-		for (int j = 0; j < N; ++j)
-		{
-			if (i == j) continue;
-			if (p[i].h < p[j].h && p[i].w < p[j].w) ++p[i].rank;
-		}
-		if (i) std::cout << ' ';
-		std::cout << p[i].rank;
+		Chess[i] = new char[M + 1];
+		std::cin >> Chess[i];
+		Chess[i][M] = 0;
 	}
 
-	delete[] p;
+	for (int i = 0; i < N - 7; ++i)
+	{
+		for (int j = 0; j < M - 7; ++j)
+		{
+			if(repaint > check(j,i,Chess)) repaint = check(j,i,Chess);
+		}
+	}
+
+	std::cout << repaint;
 }
