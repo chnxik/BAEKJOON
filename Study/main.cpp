@@ -1,48 +1,24 @@
 #include <iostream>
 
-// 1018번 체스판 다시 칠하기
+// 1436번 영화감동 숌
 
-int check(int x, int y, char** arr)
+bool MovieName(int n)
 {
-	int endx = x + 8, endy = y + 8, case1 = 0, case2 = 0;
-	for (int i = y; i < endy; ++i)
+	while (n > 100)
 	{
-		for (int j = x; j < endx; ++j)
-		{
-			if (i % 2)
-			{
-				if (j % 2) arr[i][j] == 'B' ? ++case1 : ++case2;
-				else arr[i][j] == 'B' ? ++case2 : ++case1;
-			}
-			else
-			{
-				if (j % 2) arr[i][j] == 'B' ? ++case2 : ++case1;
-				else arr[i][j] == 'B' ? ++case1 : ++case2;
-			}
-		}
+		if (n % 1000 == 666) return true;
+		n /= 10;
 	}
-	return case1 > case2 ? case2 : case1;
+	return false;
 }
 
 int main()
 {
-	int N, M, repaint = 32;
-	std::cin >> N >> M;
-	char** Chess = new char* [N];
-	for (int i = 0; i < N; ++i)
+	int series = 0, N, cnt = 665;
+	std::cin >> N;
+	while (series != N)
 	{
-		Chess[i] = new char[M + 1];
-		std::cin >> Chess[i];
-		Chess[i][M] = 0;
+		if (MovieName(++cnt)) ++series;
 	}
-
-	for (int i = 0; i < N - 7; ++i)
-	{
-		for (int j = 0; j < M - 7; ++j)
-		{
-			if(repaint > check(j,i,Chess)) repaint = check(j,i,Chess);
-		}
-	}
-
-	std::cout << repaint;
+	std::cout << cnt;
 }
