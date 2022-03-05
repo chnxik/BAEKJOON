@@ -1,22 +1,40 @@
 #include <iostream>
 
-// 2231번 분해합
+// 7568번 덩치
 
-int make_num(int i)
+class people
 {
-	int tmp = i;
-	while (tmp)
+public:
+	int h;
+	int w;
+	int rank;
+
+public:
+	people()
+		: h(0)
+		, w(0)
+		, rank(1)
 	{
-		i += tmp % 10;
-		tmp /= 10;
+		std::cin >> h >> w;
 	}
-	return i;
-}
+};
 
 int main()
 {
-	int N,i;
+	int N;
 	std::cin >> N;
-	for (i = 1; i < N; ++i)	if (make_num(i) == N) break;
-	std::cout << (make_num(i) == N ? i : 0);
+	people* p = new people[N];
+
+	for (int i = 0; i < N; ++i)
+	{
+		for (int j = 0; j < N; ++j)
+		{
+			if (i == j) continue;
+			if (p[i].h < p[j].h && p[i].w < p[j].w) ++p[i].rank;
+		}
+		if (i) std::cout << ' ';
+		std::cout << p[i].rank;
+	}
+
+	delete[] p;
 }
