@@ -1,29 +1,22 @@
 #include <iostream>
 
-// 2798번 블랙잭
+// 2231번 분해합
 
-int blackjack(int i, int j, int k, int* arr)
+int make_num(int i)
 {
-	return arr[i] + arr[j] + arr[k];
+	int tmp = i;
+	while (tmp)
+	{
+		i += tmp % 10;
+		tmp /= 10;
+	}
+	return i;
 }
 
 int main()
 {
-	int N, M, res = 0;
-	std::cin >> N >> M;
-	int* card = new int[N];
-	for (int i = 0; i < N; ++i) std::cin >> card[i];
-	for (int i = 0; i < N; ++i)
-	{
-		for (int j = i + 1; j < N; ++j)
-		{
-			for (int k = j + 1; k < N; ++k)
-			{
-				if (blackjack(i, j, k, card) <= M && res < blackjack(i, j, k, card)) res = blackjack(i, j, k, card);
-			}
-		}
-	}
-	std::cout << res;
-
-	delete[] card;
+	int N,i;
+	std::cin >> N;
+	for (i = 1; i < N; ++i)	if (make_num(i) == N) break;
+	std::cout << (make_num(i) == N ? i : 0);
 }
