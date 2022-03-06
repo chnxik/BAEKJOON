@@ -1,31 +1,42 @@
 #include <iostream>
 
-// 2750번 수 정렬하기
+// 2751번 수 정렬하기 2
 
-void Swap(int& a, int& b)
+void Merge(int* Arr,int* tmp, int left, int mid, int right)
 {
-	int tmp = a;
-	a = b;
-	b = tmp;
+	int i = left;
+	int j = mid + 1;
+	int k = left;
+	while (i <= mid && j <= right)
+	{
+		if (Arr[i] <= Arr[j]) tmp[k++] = Arr[i++];
+		else tmp[k++] = Arr[j++];
+	}
+	if (i > mid) while (j <= right) tmp[k++] = Arr[j++];
+	else while (i <= mid) tmp[k++] = Arr[i++];
+	for (int i = left; i <= right; ++i) Arr[i] = tmp[i];
 }
 
-void Sort(int* Arr, int N)
+void MergeSort(int* Arr, int* tmp, int left, int right)
 {
-	for (int i = 1; i < N; ++i)
+	int mid;
+	if (left < right)
 	{
-		for (int j = 1; j < N; ++j)
-		{
-			if (Arr[j - 1] > Arr[j]) Swap(Arr[j - 1], Arr[j]);
-		}
+		mid = (left + right) / 2;
+		MergeSort(Arr, tmp, left, mid);
+		MergeSort(Arr, tmp, mid + 1, right);
+		Merge(Arr, tmp, left, mid, right);
 	}
 }
 
 int main()
 {
-	int N, * Arr;
+	int N, * Arr, * tmpArr;
 	std::cin >> N;
 	Arr = new int[N];
-	for (int i = 0; i < N; ++i)std::cin >> Arr[i];
-	Sort(Arr, N);
+	tmpArr = new int[N];
+	for (int i = 0; i < N; ++i) std::cin >> Arr[i];
+	MergeSort(Arr, tmpArr, 0, N-1);
 	for (int i = 0; i < N; ++i) std::cout << Arr[i] << '\n';
+	delete[] Arr,tmpArr;
 }
