@@ -1,42 +1,73 @@
 #include <iostream>
 
-// 2751번 수 정렬하기 2
+// 2108번 통계학
 
-void Merge(int* Arr,int* tmp, int left, int mid, int right)
+using std::cout;
+
+int Base[8001] = { 0, };
+
+enum many
 {
-	int i = left;
-	int j = mid + 1;
-	int k = left;
-	while (i <= mid && j <= right)
+	cnt,
+	idx1,
+	idx2,
+	end
+};
+
+void fn_Many(int Base[], int arr[], int n)
+{
+	if (Base[n + 4000] > arr[cnt])
 	{
-		if (Arr[i] <= Arr[j]) tmp[k++] = Arr[i++];
-		else tmp[k++] = Arr[j++];
+		arr[cnt] = Base[n + 4000];
+		arr[idx1] = n;
+		arr[idx2] = n;
 	}
-	if (i > mid) while (j <= right) tmp[k++] = Arr[j++];
-	else while (i <= mid) tmp[k++] = Arr[i++];
-	for (int i = left; i <= right; ++i) Arr[i] = tmp[i];
-}
-
-void MergeSort(int* Arr, int* tmp, int left, int right)
-{
-	int mid;
-	if (left < right)
+	else if (Base[n + 4000] == arr[cnt])
 	{
-		mid = (left + right) / 2;
-		MergeSort(Arr, tmp, left, mid);
-		MergeSort(Arr, tmp, mid + 1, right);
-		Merge(Arr, tmp, left, mid, right);
+		if (n < arr[idx1])
+		{
+			arr[idx2] = arr[idx1];
+			arr[idx1] = n;
+		}
+		else if (arr[idx2] == arr[idx1] || arr[idx2] > n) arr[idx2] = n;
 	}
 }
 
 int main()
 {
-	int N, * Arr, * tmpArr;
+
+	std::cout << std::fixed;
+	std::cout.precision(0);
+
+	int N, n, many[end] = { 0, }, max = -4000, min = 4000;
+	double sumavg = 0;
 	std::cin >> N;
-	Arr = new int[N];
-	tmpArr = new int[N];
-	for (int i = 0; i < N; ++i) std::cin >> Arr[i];
-	MergeSort(Arr, tmpArr, 0, N-1);
-	for (int i = 0; i < N; ++i) std::cout << Arr[i] << '\n';
-	delete[] Arr,tmpArr;
+	int* mid = new int[N], * pmid = mid;
+	for (int i = 0; i < N; ++i)
+	{
+		std::cin >> n;
+		max = max < n ? n : max;
+		min = min > n ? n : min;
+		sumavg += n;
+		++Base[n + 4000];
+		fn_Many(Base, many, n);
+	}
+
+	for (int i = min; i <= max; ++i)
+	{
+		while (Base[i + 4000])
+		{
+			--Base[i + 4000];
+			*(pmid++) = i;
+		}
+	}
+
+	sumavg /= N;
+	if (sumavg <0 && sumavg >-1) sumavg = 0;
+	std::cout << sumavg << '\n';
+	std::cout << mid[N / 2] << '\n';
+	std::cout << many[idx2] << '\n';
+	std::cout << max - min;
+
+	delete[] mid;
 }
