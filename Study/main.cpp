@@ -1,24 +1,31 @@
 #include <iostream>
 
-// 1436번 영화감동 숌
+// 2750번 수 정렬하기
 
-bool MovieName(int n)
+void Swap(int& a, int& b)
 {
-	while (n > 100)
+	int tmp = a;
+	a = b;
+	b = tmp;
+}
+
+void Sort(int* Arr, int N)
+{
+	for (int i = 1; i < N; ++i)
 	{
-		if (n % 1000 == 666) return true;
-		n /= 10;
+		for (int j = 1; j < N; ++j)
+		{
+			if (Arr[j - 1] > Arr[j]) Swap(Arr[j - 1], Arr[j]);
+		}
 	}
-	return false;
 }
 
 int main()
 {
-	int series = 0, N, cnt = 665;
+	int N, * Arr;
 	std::cin >> N;
-	while (series != N)
-	{
-		if (MovieName(++cnt)) ++series;
-	}
-	std::cout << cnt;
+	Arr = new int[N];
+	for (int i = 0; i < N; ++i)std::cin >> Arr[i];
+	Sort(Arr, N);
+	for (int i = 0; i < N; ++i) std::cout << Arr[i] << '\n';
 }
