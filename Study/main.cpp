@@ -1,6 +1,6 @@
 #include <iostream>
 
-// 11650번 좌표 정렬하기
+// 11651번 좌표 정렬하기 2
 
 class loc
 {
@@ -21,8 +21,8 @@ public:
 	bool operator > (loc _other)
 	{
 		bool res;
-		if (x == _other.x) res = y > _other.y ? true : false;
-		else res = x > _other.x ? true : false;
+		if (y == _other.y) res = x > _other.x ? true : false;
+		else res = y > _other.y ? true : false;
 		return res;
 	}
 };
